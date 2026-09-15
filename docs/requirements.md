@@ -39,6 +39,7 @@ The first version should allow the user to:
 - add notes about technologies used by the company;
 - add notes about application status;
 - track whether German or English appears to be required;
+- record the required German proficiency level using CEFR levels;
 - view all saved companies in one list.
 
 ## Out of Scope for the First Version
