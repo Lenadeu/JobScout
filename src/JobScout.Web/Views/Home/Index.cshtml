@@ -1,8 +1,300 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@* Set the page title *@
+@* Starts a Razor/C# code block *@
+@{
+    @* Stores the page title under the key "Title" *@
+    ViewData["Title"] = "JobScout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@* Main page container  *@
+@* container is bootstrap class  *@
+@* py-4 - padding on the top and bottom  *@
+
+<div class="container py-4">
+
+    @* introductory page content *@
+    @* mb-4 - margin-bottom  *@
+    <header class="mb-4">
+        @* d-flex - Bootstrap Flexbox  *@
+        @* justify-content-between puts the first content on the left and the button on the right *@
+        @* align-items-center - vertically centers both parts  *@
+        <div class="d-flex justify-content-between align-items-center">
+            @* Groups title and subtitle  *@
+            <div>
+                @* h1 - Heading of the page *@
+                @* display-5 is a bootstrap class that makes the heading large and
+                   visually prominent
+                *@
+                <h1 class="display-5">JobScout</h1>
+                @* p - Paragraf
+                lead - larger
+                text-muted - softer gray color
+                *@
+                <p class="lead text-muted">
+                    C#/.NET opportunities in Germany
+                </p>
+            </div>
+            @* Button. btn - bootstrap button styling. btn-primary - main blue button color *@
+            <button type="button" class="btn btn-primary">
+                Add company
+            </button>
+        </div>
+    </header>
+    @* Summary cards  *@
+    @* Section groups related content. row - bootstrap grid row. g-3 adds spacing between
+    the cards. mb-4 adds space below the summary area. aria-label - gives the section an
+    accessible description for screen readers *@
+    <section class="row g-3 mb-4" aria-label="Job search summary">
+        @* One grid column. col-md-3 - for medium and large screens use 3 of 12 columns. on
+        small screens, the card can move below each other *@
+        <div class="col-md-3">
+            @* card - bootstrap card. shadow-sm - small shadow. h-100 - makes cards in the
+               same row equal in height
+            *@
+            <div class="card shadow-sm h-100">
+                @* Padded content area inside the card *@
+                <div class="card-body">
+                    @* h2 - Secondary hading. Text-muted - muted. *@
+                    <h2 class="h6 text-muted">Total companies</h2>
+                    @* display-6 makes the number larger. mb-0 removes the paragraph's
+                       bottom margin
+                    *@
+                    <p class="display-6 mb-0">12</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="h6 text-muted">Open positions</h2>
+                    <p class="display-6 mb-0">7</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="h6 text-muted">Initiative applications</h2>
+                    <p class="display-6 mb-0">5</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="h6 text-muted">Needs follow-up</h2>
+                    <p class="display-6 mb-0">3</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* Search and filter area
+    *@
+
+    @* card-like secton with the search and filter controls
+    *@
+    <section class="card shadow-sm mb-4">
+        @* card-body adds padding inside the card
+        *@
+        <div class="card-body">
+            @* Section heading. h4 - smaller as h1. mb-3 adds spaces below it
+            *@
+            <h2 class="h4 mb-3">Search and filter companies</h2>
+            @* HTML form
+            *@
+            <form>
+                @* Bootstrap grid row with spacing between the controls
+                *@
+                <div class="row g-3">
+                    @* field uses 4 of 12 grid columns on medium and larger screens
+                    *@
+                    <div class="col-md-4">
+                        @* Search and filter area  *@
+                        @* Label for the input. value "for" must match the input's id *@
+
+                        <label for="companySearch" class="form-label">
+                            Company name
+                        </label>
+                        @* Search input. form-control - gives it Bootstrap styling. id -
+                           connects it to the label.
+                        *@
+                        <input type="search"
+                               class="form-control"
+                               id="companySearch"
+                               placeholder="Search by company name">
+                    </div>
+                    @* Location filter *@
+                    <div class="col-md-3">
+                        <label for="locationFilter" class="form-label">
+                            Location
+                        </label>
+                        @* Creates a dropdpwn list. form-select gives the dropdown Bootstrap styling
+                        *@
+                        <select class="form-select" id="locationFilter">
+                            @* Create the first option and select it initially *@
+                            <option selected>All locations</option>
+                            <option>Munich</option>
+                            <option>Passau</option>
+                            <option>Frankfurt</option>
+                            <option>Remote</option>
+                        </select>
+                    </div>
+                    @* German-level filter *@
+                    <div class="col-md-3">
+                        <label for="germanLevelFilter" class="form-label">
+                            Required German level
+                        </label>
+                        <select class="form-select" id="germanLevelFilter">
+                            <option selected>All levels</option>
+                            <option>No German required</option>
+                            <option>B1 or lower</option>
+                            <option>B2</option>
+                            <option>C1 or higher</option>
+                            <option>Not specified</option>
+                        </select>
+                    </div>
+                    @*  Application-status filter *@
+                    <div class="col-md-2">
+                        <label for="statusFilter" class="form-label">
+                            Status
+                        </label>
+                        <select class="form-select" id="statusFilter">
+                            <option selected>All statuses</option>
+                            <option>Not applied</option>
+                            <option>Planned</option>
+                            <option>Applied</option>
+                            <option>Interview</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    @* Saved-companies section *@
+    <section>
+        @* place the heading on the left and the example-count text on the right *@
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h4 mb-0">Saved companies</h2>
+            @* span - small inline text container *@
+            <span class="text-muted">3 example companies</span>
+        </div>
+        @* Company table *@
+
+        @* Makes the table horizontally scrollable on small screens instead of breaking
+           the page layout
+        *@
+        <div class="table-responsive">
+            @* create the table. table - Bootstrap table styling. table-hover - highlights a row
+               when the mouse moves over it. align-middle - vertically centers cell content
+            *@
+            <table class="table table-hover align-middle">
+                @* A caption describes the table. visually-hidden hides it visually but
+                   keeps it avaliable to screen readers for accessibility
+                *@
+                <caption class="visually-hidden">
+                    Saved companies and job search information
+                </caption>
+                @* thead starts table header. table-light gives a header a light background *@
+                <thead class="table-light">
+                    @* tr - row *@
+                    <tr>
+                        @* th - table heading. scope="col" tells assistive tech that this heading
+                           describes a column
+                        *@
+                        <th scope="col">Company</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Open position</th>
+                        <th scope="col">Initiative application</th>
+                        <th scope="col">German level</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                @* Company table body *@
+                <tbody>
+                    @* One row *@
+                    <tr>
+                        @* One cell *@
+                        <td>
+                            @* strong - bold *@
+                            <strong>Example Software GmbH</strong>
+                        </td>
+                        <td>Munich</td>
+                        <td>
+                            @* Bootstrap bage. text-bg-success - green success badge *@
+                            <span class="badge text-bg-success">Yes</span>
+                        </td>
+                        <td>
+                            @* Bootstrap bage. text-bg-secondary - gray badge *@
+                            <span class="badge text-bg-secondary">Unknown</span>
+                        </td>
+                        <td>B2</td>
+                        <td>
+                            @* Bootstrap bage. text-bg-light border - light background and border *@
+                            <span class="badge text-bg-light border">
+                                Not applied
+                            </span>
+                        </td>
+
+                        <td>
+                            @* Link styled as a small button. a - hyprlink. href=# is a placeholder
+                               btn-sm makes button small. btn-outline-primary gives it an
+                               outlined blue appearance
+                            *@
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                View details
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Bavaria Digital AG</strong>
+                        </td>
+                        <td>Passau</td>
+                        <td>
+                            <span class="badge text-bg-success">Yes</span>
+                        </td>
+                        <td>
+                            <span class="badge text-bg-success">Yes</span>
+                        </td>
+                        <td>No German required</td>
+                        <td>
+                            <span class="badge text-bg-warning">Planned</span>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                View details
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Rhine Systems GmbH</strong>
+                        </td>
+                        <td>Frankfurt</td>
+                        <td>
+                            <span class="badge text-bg-secondary">No</span>
+                        </td>
+                        <td>
+                            <span class="badge text-bg-success">Yes</span>
+                        </td>
+                        <td>C1</td>
+                        <td>
+                            <span class="badge text-bg-info">Follow-up</span>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                View details
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </div>
